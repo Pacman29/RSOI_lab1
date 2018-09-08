@@ -9,6 +9,7 @@ jobs:
   include:
     - stage: test
       language: java
+      sudo: true
       before_install:
       - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
       matrix:
