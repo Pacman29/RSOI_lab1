@@ -4,21 +4,24 @@ language: Java
 jdk: oraclejdk8
 
 stages:
+  - name: compile
   - name: test
   - name: deploy
 
 
 jobs:
   include:
+    - stage: compile
+      install: mvn --version
+      script:
+        - mvn compile
     - stage: test
       install: mvn --version
       script:
-        - mvn install
         - mvn test
     - stage: deploy
       install: mvn --version
       script:
-        - mvn install
         - mvn package
         - docker build -t rsoitest .
 
