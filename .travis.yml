@@ -9,15 +9,23 @@ jobs:
   include:
     - stage: test
       language: java
-      jdk:
-        - openjdk10
+      before_install:
+      - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+      matrix:
+        include:
+        - env: JDK='Oracle JDK 10'
+          install: . ./install-jdk.sh -F 10 -L BCL
       script:
         - mvn install
         - mvn test
     - stage: deploy
       language: java
-      jdk:
-        - openjdk10
+      before_install:
+      - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+      matrix:
+        include:
+        - env: JDK='Oracle JDK 10'
+          install: . ./install-jdk.sh -F 10 -L BCL
       script:
         - mvn install
         - mvn package
