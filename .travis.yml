@@ -1,0 +1,25 @@
+language: generic
+
+stages:
+  - name: test
+  - name: deploy
+
+
+jobs:
+  include:
+    - stage: test
+      language: java
+      jdk:
+        - openjdk10
+      script:
+        - mvn install
+        - mvn test
+    - stage: deploy
+      language: java
+      jdk:
+        - openjdk10
+      script:
+        - mvn install
+        - mvn package
+        - docker build -t rsoitest .
+
