@@ -1,4 +1,7 @@
-language: generic
+dist: trusty
+sudo: false
+language: Java
+jdk: oraclejdk8
 
 stages:
   - name: test
@@ -8,19 +11,11 @@ stages:
 jobs:
   include:
     - stage: test
-      language: java
-      jdk:
-      - oraclejdk8
-      sudo: false
       install: mvn --version
       script:
         - mvn install
         - mvn test
     - stage: deploy
-      language: java
-      jdk:
-      - oraclejdk8
-      sudo: false
       install: mvn --version
       script:
         - mvn install
