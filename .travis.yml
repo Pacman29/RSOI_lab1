@@ -23,5 +23,7 @@ jobs:
       install: mvn --version
       script:
         - mvn package
-        - docker build -t rsoitest .
+        - docker login --username=_ --password=$API_KEY registry.heroku.com
+        - docker build -t registry.heroku.com/rsoi-lab1/web .
+        - docker push registry.heroku.com/rsoi-lab1/web
 
