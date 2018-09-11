@@ -29,5 +29,6 @@ jobs:
         - docker push registry.heroku.com/coursersoi/web
         - docker run --rm -e HEROKU_API_KEY=$API_KEY wingrunr21/alpine-heroku-cli container:release web --app coursersoi
     - stage: integration_test
+      install: mvn --version
       script:
         - curl -X GET  https://coursersoi.herokuapp.com/
