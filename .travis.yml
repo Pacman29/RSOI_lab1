@@ -27,5 +27,6 @@ jobs:
         - docker build -t registry.heroku.com/coursersoi/web .
         - docker push registry.heroku.com/coursersoi/web
         - export HEROKU_API_KEY=$API_KEY
+        - heroku --version
         - heroku container:release web --app coursersoi
 
