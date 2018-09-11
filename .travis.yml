@@ -26,5 +26,6 @@ jobs:
         - docker login --username=_ --password=$(echo $API_KEY) registry.heroku.com
         - docker build -t registry.heroku.com/coursersoi/web .
         - docker push registry.heroku.com/coursersoi/web
-        - docker run --rm -e HEROKU_API_KEY=$API_KEY wingrunr21/alpine-heroku-cli container:release web --app coursersoi
+        - export HEROKU_API_KEY=$API_KEY
+        - heroku container:release web --app coursersoi
 
