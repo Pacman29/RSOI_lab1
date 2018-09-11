@@ -7,6 +7,7 @@ stages:
   - name: compile
   - name: test
   - name: deploy
+  - name: integration_test
 
 
 jobs:
@@ -27,4 +28,6 @@ jobs:
         - docker build -t registry.heroku.com/coursersoi/web .
         - docker push registry.heroku.com/coursersoi/web
         - docker run --rm -e HEROKU_API_KEY=$API_KEY wingrunr21/alpine-heroku-cli container:release web --app coursersoi
-
+    - stage: integration_test
+      script:
+        - curl -X GET  https://coursersoi.herokuapp.com/
